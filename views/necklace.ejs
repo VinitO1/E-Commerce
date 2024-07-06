@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+	<div class="row d-flex">
+		<% for(let i = 0; i < necklace.length; i++) { %>
+		<div class="col-md-4">
+			<div class="card black-card">
+				<a href="/product-detail/necklace/<%= necklace[i].id %>">
+					<img
+						src="<%= necklace[i].image %>"
+						class="card-img-top"
+						alt="<%= necklace[i].title %>" />
+				</a>
+				<div class="card-body">
+					<h5 class="card-title"><%= necklace[i].title %></h5>
+					<p class="card-text">$<%= necklace[i].price %></p>
+					<button
+						class="add-to-cart-btn"
+						data-id="<%= necklace[i].id %>"
+						data-title="<%= necklace[i].title %>"
+						data-price="<%= necklace[i].price %>"
+						data-image="<%= necklace[i].image %>">
+						Add to Cart
+					</button>
+				</div>
+			</div>
+		</div>
+		<% } %>
+	</div>
+</div>
+<%- include('partials/footer') %>

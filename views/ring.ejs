@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+	<div class="row d-flex">
+		<% for(let i = 0; i < rings.length; i++) { %>
+		<div class="col-md-4">
+			<div class="card black-card">
+				<a href="/product-detail/rings/<%= rings[i].id %>">
+					<img
+						src="<%= rings[i].image %>"
+						class="card-img-top"
+						alt="<%= rings[i].title %>" />
+				</a>
+				<div class="card-body">
+					<h5 class="card-title"><%= rings[i].title %></h5>
+					<p class="card-text">$<%= rings[i].price %></p>
+					<button
+						class="add-to-cart-btn"
+						data-id="<%= rings[i].id %>"
+						data-title="<%= rings[i].title %>"
+						data-price="<%= rings[i].price %>"
+						data-image="<%= rings[i].image %>">
+						Add to Cart
+					</button>
+				</div>
+			</div>
+		</div>
+		<% } %>
+	</div>
+</div>
+<%- include('partials/footer') %>

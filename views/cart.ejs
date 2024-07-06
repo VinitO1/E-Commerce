@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+
+<div class="container">
+	<h2>Your cart</h2>
+	<div class="row">
+		<% if (cart.length > 0) { %> <% let total = 0; let tax = 0; let subTotal =
+		0; %> <% cart.forEach(item => { %>
+		<div class="col-md-8">
+			<div class="card product-card black-card">
+				<div class="row g-0">
+					<div class="col-md-4">
+						<img
+							src="<%= item.image %>"
+							class="img-fluid product-img"
+							alt="<%= item.title %>" />
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title"><%= item.title %></h5>
+							<p class="card-text">$<%= item.price %></p>
+							<div class="d-flex align-items-center">
+								<button
+									onclick="decreaseQuantity('<%= item.id %>')"
+									class="btn btn-secondary quantity-btn">
+									-
+								</button>
+								<span class="quantity-text" id="quantity<%= item.id %>"
+									><%= item.quantity %></span
+								>
+								<button
+									onclick="increaseQuantity('<%= item.id %>')"
+									class="btn btn-primary quantity-btn">
+									+
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<% subTotal += item.price; %> <% }); %> <% tax = subTotal * 0.12; %>
+		<!-- Fixed calculation of tax -->
+		<div class="col-md-4">
+			<h5>No of products: <%= cart.length %></h5>
+			<h5>Sub-Total: $<%= subTotal.toFixed(2) %></h5>
+			<h5>Tax: $<%= tax.toFixed(2) %></h5>
+			<!-- Corrected display of tax and used toFixed for formatting -->
+			<h2>Total: $<%= (subTotal + tax).toFixed(2) %></h2>
+			<!-- Corrected total calculation and formatting -->
+			<a href="/checkout" class="btn btn-primary checkout">Checkout</a>
+		</div>
+		<% } else { %>
+		<div class="col-md-12">
+			<p>Your cart is empty.</p>
+		</div>
+		<% } %>
+	</div>
+</div>
+
+<%- include('partials/footer') %>
